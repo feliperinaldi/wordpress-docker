@@ -5,3 +5,8 @@ Ensinado na live 53: [AprendaWP com Felipe Rinaldi](https://www.youtube.com/chan
 
 Entre para a lista de emails: [FelipeRinaldi.com](https://feliperinaldi.com)
 
+Atalhos:
+
+$ git clone git@github.com:feliperinaldi/wordpress-docker.git
+$ cd wordpress-docker
+$ docker-compose up -d
