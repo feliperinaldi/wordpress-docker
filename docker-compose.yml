@@ -8,7 +8,7 @@ services:
     ports:
       - "${LOCAL_DB_PORT}:3306"
     restart: on-failure:5
-    container_name: "${PRODUCTION_NAME}_db"
+    container_name: "${PROJECT_NAME}_db"
     volumes:
       - ./database:/var/lib/mysql
     environment:
@@ -21,12 +21,13 @@ services:
     depends_on:
       - database
     image: wordpress:latest
-    container_name: "${PRODUCTION_NAME}_wordpress"
+    container_name: "${PROJECT_NAME}_wordpress"
     ports:
       - "${LOCAL_SERVER_PORT}:80"
     restart: on-failure:5
     volumes:
       - ./public:/var/www/html
+      - ./config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     environment:
       WORDPRESS_DB_HOST: "${WORDPRESS_DB_HOST}:3306"
       WORDPRESS_DB_PASSWORD: "${MYSQL_PASSWORD}"
@@ -38,7 +39,7 @@ services:
     ports:
       - "${LOCAL_PORT_DB_GUI}:80"
     restart: on-failure:5
-    container_name: "${PRODUCTION_NAME}_phpmyadmin"
+    container_name: "${PROJECT_NAME}_phpmyadmin"
     environment:
       PMA_HOST: "${PMA_HOST}"
   
@@ -48,21 +49,8 @@ services:
       - wordpress
     image: welaika/wordmove
     restart: on-failure:5
-    container_name: "${PRODUCTION_NAME}_wordmove"
+    container_name: "${PROJECT_NAME}_wordmove"
     volumes:
       - ./config/wordmove/:/html/
       - ./config/ssh:/root/.ssh
       - ./public:/var/www/html
-    environment:
-      LOCAL_SERVER_PORT: "${LOCAL_SERVER_PORT}"
-      PRODUCTION_URL: "${PRODUCTION_URL}"
-      PRODUCTION_DIR_PATH: "${PRODUCTION_DIR_PATH}"
-      PRODUCTION_DB_NAME: "${PRODUCTION_DB_NAME}"
-      PRODUCTION_DB_USER: "${PRODUCTION_DB_USER}"
-      PRODUCTION_DB_PASSWORD: "${PRODUCTION_DB_PASSWORD}"
-      PRODUCTION_DB_HOST: "${PRODUCTION_DB_HOST}"
-      PRODUCTION_DB_PORT: "${PRODUCTION_DB_PORT}"
-      PRODUCTION_SSH_HOST: "${PRODUCTION_SSH_HOST}"
-      PRODUCTION_SSH_USER: "${PRODUCTION_SSH_USER}"
-      PRODUCTION_SSH_PASS: "${PRODUCTION_SSH_PASS}"
-      PRODUCTION_SSH_PORT: "${PRODUCTION_SSH_PORT}"

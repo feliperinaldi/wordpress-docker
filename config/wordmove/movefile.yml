@@ -2,7 +2,7 @@ global:
   sql_adapter: wpcli
 
 local:
-  vhost: "http://localhost:<%= ENV['LOCAL_SERVER_PORT'] %>"
+  vhost: "http://localhost:8000"
   wordpress_path: "/var/www/html/"
   database:
     name: "wordpress"
@@ -12,15 +12,15 @@ local:
     mysqldump_options: "--hex-blob"
 
 production:
-  vhost: "<%= ENV['PRODUCTION_URL'] %>"
-  wordpress_path: "<%= ENV['PRODUCTION_DIR_PATH'] %>"
+  vhost: "https://www.example.com"
+  wordpress_path: "/home/user/public_html"
 
   database:
-    name: "<%= ENV['PRODUCTION_DB_NAME'] %>"
-    user: "<%= ENV['PRODUCTION_DB_USER'] %>"
-    password: "<%= ENV['PRODUCTION_DB_PASSWORD'] %>"
-    host: "<%= ENV['PRODUCTION_DB_HOST'] %>"
-    #port: "<%= ENV['PRODUCTION_DB_PORT'] %>"
+    name: ""
+    user: ""
+    password: ""
+    host: "localhost"
+    #port: ""
     mysqldump_options: "--hex-blob"
 
   exclude:
@@ -48,8 +48,8 @@ production:
     - '.well-known/'
 
   ssh:
-    host: "<%= ENV['PRODUCTION_SSH_HOST'] %>"
-    user: "<%= ENV['PRODUCTION_SSH_USER'] %>"
-    password: "<%= ENV['PRODUCTION_SSH_PASS'] %>"
-    port: "<%= ENV['PRODUCTION_SSH_PORT'] %>"
+    host: ""
+    user: ""
+    password: ""
+    port: ""
     rsync_options: "--verbose"
