@@ -1,30 +1,28 @@
 # Wordpress-Docker Dev Environment
 Wordpress-Docker development environment
 
-Ensinado na live 53: [AprendaWP com Felipe Rinaldi](https://www.youtube.com/channel/UC-LKig8NJbVzDdTnEmRHVRQ/)
+Copied and edited with our pull requests from [feliperinaldi](https://github.com/feliperinaldi/wordpress-docker)
 
-Entre para a lista de emails: [FelipeRinaldi.com](https://feliperinaldi.com)
+Shortcutes to install directly in your machine.
+$ git clone git@github.com:ikoba218/wordpress-docker.git && cd wordpress-docker && docker-compose up -d
 
-Atalho para instalar diretamente um novo wordpress na máquina:
-$ git clone git@github.com:feliperinaldi/wordpress-docker.git && cd wordpress-docker && docker-compose up -d
+To customize your setup:
+1. Firstly, clone this repo and go into the folder: 
+$ git clone git@github.com:ikoba218/wordpress-docker.git && cd wordpress-docker
 
-Para customizar cada nova instalação:
-1. Primeiro clone o repositório e entre na pasta: 
-$ git clone git@github.com:feliperinaldi/wordpress-docker.git && cd wordpress-docker
+2. And then edit the file .env on line 5: PROJECT_NAME - changing dockerwp to your slug.
+It will make your containers slugs have the same slug before the container name.
 
-2. Depois edite o arquivo .env na linha 5: PROJECT_NAME - substituindo dockerwp pelo slug da sua aplicação.
-Isso fará com que todos os containers dessa instalação tenha seu slug único no início.
-
-3. Inicie os containers:
+3. Start the containers:
 $ docker-compose up -d
 
-Para usar o WP Cli:
+## To WP Cli:
 
-O WP Cli desta instalação encontra-se no container do wordmove. Desta forma, após a instalação seguindo os passos anteriores, basta:
+This setup uses the WP Cli in the wordmove container. Then, after followed the previous steps:
 
-1. Na pasta da nova instalação (padrão wordpress-docker):
-$ docker exec -it seu_slug_wordmove /bin/bash
+1. In the new setup folder (default wordpress-docker):
+$ docker exec -it your_slug_wordmove /bin/bash
 
-2. Dentro do bash, vá para o Container do WP e seja feliz:
+2. Within bash, go to the WP Container and be happy:
 $ cd /var/www/html && wp --version --allow-root
-Note: ao final do comando, sempre use --allow-root para que seu comando do wp cli possa ser executado.
+Notice: in the end of command line, always use the --allow-root to make your command works with wp cli.
